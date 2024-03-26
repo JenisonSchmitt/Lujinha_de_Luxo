@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Vendas</title>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+    <script>
+        function formatarCPF(campo) {
+            var valor = campo.value.replace(/\D/g, '');
+            valor = valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+            campo.value = valor;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div class='btn-wrap'>
+            <br>
+            <br>
+            <form class="center" action="DB_VerVendaCPF.php" method="post">
+                <label for="cpf">Digite o CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF" oninput="formatarCPF(this)" required>
+                <button class="btn btn-accent btn-xlarge btn-rounded" type="submit">Ver Vendas por CPF</button>
+            </form>
+        </div>
+        <div class='table-wrap center'>
+            <?php include 'DB_VerVendaCPF.php'; ?>
+        </div>
+    </div>
+</body>
+</html>

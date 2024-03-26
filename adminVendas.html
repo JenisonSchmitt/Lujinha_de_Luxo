@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class='no-js' lang='pt'>
+  <head>
+      <title>Acesso administradores</title>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+      <meta name='format-detection' content='telephone=no'>
+      <meta name='apple-mobile-web-app-capable' content='yes'>
+      <meta name='author' content='TemplatesJungle'>
+      <meta name='keywords' content='Sua "Lujinha" virtual'>
+      <meta name='description' content='Sua "Lujinha" virtual'>
+      <link rel='stylesheet' type='text/css' href='icomoon/icomoon.css'>
+      <link rel='stylesheet' type='text/css' href='css/vendor.css'>
+      <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet'
+          integrity='sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9' crossorigin='anonymous'>
+      <link rel='stylesheet' type='text/css' href='style.css'>
+      <link rel='preconnect' href='https://fonts.googleapis.com'>
+      <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+      <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+          rel='stylesheet'>
+      <link rel="shortcut icon" type="imagex/png" href="images/icone.ico">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body class="body_GUI">
+    <div class='main-logo'>
+      <a href=''>LdL</a>
+    </div>  
+    <section id='intro' class='scrollspy-section'>
+      <div class='main-slider'>
+        <div class='slider-item_ jarallax' data-speed='0.2'>
+          <img src='images/foto15.png' alt='banner' class='jarallax-img'>
+          <div class='banner-content'>
+            <h3 class='banner-title txt-fx'>Lujinha de Luxo</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="passwordForm" class="passwordForm_GUI">
+      <label for="password">Digite a senha:</label>
+      <input type="password" id="password">
+      <button onclick="checkPassword()">Entrar</button>
+    </div>
+    <div class="cotainer_GUI center">
+      <div class="menu_GUI center">
+        <h2>Vendas</h2>
+        <ul class="center">
+          <li><a href="javascript:void(0);" onclick="openFrame('cadastroVenda.html')">Cadastrar Venda</a></li>
+          <li><a href="javascript:void(0);" onclick="openFrame('VerVenda.html')">Todas as Vendas</a></li>
+          <li><a href="javascript:void(0);" onclick="openFrame('VerVendaCPF.html')">Vendas por CPF</a></li></ul><ul class="center">
+          <li><a href="javascript:void(0);" onclick="openFrame('VerVendaSite.html')">Cliques Venda Site</a></li>
+          <li><a href="javascript:void(0);" onclick="openFrame('os.html')">Gerar Ordem de Serviço</a></li>
+        </ul>
+        <ul class="center">
+            <li><a href=index.html>Menu Principal</a></li>
+        </ul>
+      </div>
+      <div id="content" class="content_GUI">
+        <iframe id="frame" src="" frameborder="0" class="iframe_GUI"></iframe>
+      </div>
+    </div>
+    <script class="passwordForm_GUI">
+        var adminPassword = "250919";
+        var passwordEntered = false;
+      
+        function openFrame(url) {
+          if (!passwordEntered) {
+            askForPassword(url);
+          } else {
+            document.getElementById('frame').src = url;
+          }
+        }
+      
+        function checkPassword() {
+          var enteredPassword = document.getElementById('password').value;
+          if (enteredPassword === adminPassword) {
+            document.getElementById('passwordForm').style.display = 'none';
+            passwordEntered = true;
+          } else {
+            alert("Senha incorreta. Tente novamente.");
+          }
+        }
+      
+        function askForPassword(url) {
+          var password = prompt("Digite a senha:");
+          if (password === adminPassword) {
+            document.getElementById('frame').src = url;
+            passwordEntered = true;
+          } else {
+            alert("Senha incorreta. Tente novamente.");
+          }
+        }
+      
+        // Verifica se a senha já foi inserida antes (pode ser ajustado para localStorage se necessário)
+        var passwordFlag = document.cookie.replace(/(?:(?:^|.*;\s*)passwordEntered\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        if (passwordFlag === "true") {
+          passwordEntered = true;
+          document.getElementById('passwordForm').style.display = 'none';
+        }
+      </script>
+      
+    <script src='js/jquery-1.11.0.min.js'></script>
+    <script src='js/ui-easing.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js'
+    integrity='sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm'
+    crossorigin='anonymous'></script>
+    <script src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js'></script>
+    <script src='js/plugins.js'></script>
+    <script src='js/script.js'></script>
+  </body>
+</html>

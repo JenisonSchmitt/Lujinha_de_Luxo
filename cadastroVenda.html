@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class='no-js' lang='pt'>
+<head>
+    <title>LdL - Lujinha de Luxo</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='format-detection' content='telephone=no'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='author' content='TemplatesJungle'>
+    <meta name='keywords' content='Sua "Lujinha" virtual'>
+    <meta name='description' content='Sua "Lujinha" virtual'>
+    <link rel='stylesheet' type='text/css' href='icomoon/icomoon.css'>
+    <link rel='stylesheet' type='text/css' href='css/vendor.css'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9' crossorigin='anonymous'>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+        rel='stylesheet'>
+    <link rel="shortcut icon" type="imagex/png" href="images/icone.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+    <script src='js/ui-easing.js'></script>
+    <script src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js'></script>
+    <script src='js/plugins.js'></script>
+    <script src='js/script.js'></script>
+    <script>
+$(document).ready(function () {
+    // Configurar o Autocomplete para o nome do cliente
+    $('#nome_cli').autocomplete({
+        source: function(request, response) {
+            // Fazer uma solicitação AJAX para buscar nomes
+            $.ajax({
+                url: 'buscar_cpf.php', // Certifique-se de ter um arquivo com este nome
+                dataType: 'json',
+                data: {
+                    term: request.term
+                },
+                success: function(data) {
+                    response(data);
+                }
+            });
+        },
+        minLength: 2, // Número mínimo de caracteres antes de iniciar a pesquisa
+        select: function (event, ui) {
+            // Se uma opção for selecionada, preencha o valor no campo
+            $('#nome_cli').val(ui.item.value);
+            return false;
+        }
+    });
+
+    // Configurar o Autocomplete para o Nome do Produto
+    $('#nomeProduto').autocomplete({
+        source: function(request, response) {
+            // Fazer uma solicitação AJAX para buscar produtos
+            $.ajax({
+                url: 'buscar_produto.php',
+                dataType: 'json',
+                data: {
+                    term: request.term
+                },
+                success: function(data) {
+                    response(data);
+                }
+            });
+        },
+        minLength: 2, // Número mínimo de caracteres antes de iniciar a pesquisa
+        select: function (event, ui) {
+            // Se uma opção for selecionada, preencha o valor no campo
+            $('#nomeProduto').val(ui.item.value);
+            return false;
+        }
+    });
+});
+</script>
+</head>
+<body>  
+    <section>
+        <br>
+        <h4 class="center paragrafo_5">Realizar Venda: </h4>
+        <br>
+        <form class="form_admin center col-md-12" action="DB_venda.php" method="POST">
+            <label for="nome_cli" class="label_admin">Nome Cliente:</label>
+            <input class="input_admin" type="text" id="nome_cli" name="nome_cli" autocomplete="off" required>
+
+            <label for="nomeProduto" class="label_admin">Nome Produto:</label>
+            <input class="input_admin" type="text" id="nomeProduto" name="nomeProduto" autocomplete="off" required>
+
+            <label for="quantidade" class="label_admin">Quantidade do produto:</label>
+            <input class="input_admin" type="text" id="quantidade" name="quantidade" autocomplete="off" required>
+
+            <br>
+            <button class="button_admin" type="submit">Enviar</button>
+        </form>
+	</section>
+</body>
+</html>

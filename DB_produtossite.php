@@ -67,7 +67,7 @@ if ($result1 && $result2) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='/produtossite.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar mais Produtos</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/produtossite.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar mais Produtos</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
@@ -119,7 +119,7 @@ if ($result1 && $result2) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='/produtosiste.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar novamente</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/produtosiste.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar novamente</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>

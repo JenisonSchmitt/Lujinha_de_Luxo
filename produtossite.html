@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class='no-js' lang='pt'>
+<head>
+    <title>LdL - Lujinha de Luxo</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='format-detection' content='telephone=no'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='author' content='TemplatesJungle'>
+    <meta name='keywords' content='Sua "Lujinha" virtual'>
+    <meta name='description' content='Sua "Lujinha" virtual'>
+    <link rel='stylesheet' type='text/css' href='icomoon/icomoon.css'>
+    <link rel='stylesheet' type='text/css' href='css/vendor.css'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9' crossorigin='anonymous'>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+        rel='stylesheet'>
+    <link rel="shortcut icon" type="image/png" href="images/icone.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Inclua o jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Inclua o jQuery mais recente -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js'
+        integrity='sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm'
+        crossorigin='anonymous'></script>
+    <script src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js'></script>
+    <script src='js/plugins.js'></script>
+    <script src='js/script.js'></script>
+    <script>
+        $(document).ready(function () {
+            $('#nomeProduto').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: 'buscar_produtossite.php',
+                        dataType: 'json',
+                        data: {
+                            nome: request.term
+                        },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    var selectedProduto = ui.item.value;
+
+                    // Fazer uma nova requisição para buscar as informações do produto selecionado
+                    $.ajax({
+                        url: 'buscar_informacoes_produto.php',
+                        dataType: 'json',
+                        data: {
+                            nome: selectedProduto
+                        },
+                        success: function (produtoData) {
+                            console.log("Informações do Produto: ", produtoData);
+
+                            // Preencher os campos com as informações do produto
+                            $('#descricao').val(produtoData.descricao);
+                            $('#valor').val(parseFloat(produtoData.valor).toFixed(2));
+                            $('#marca').val(produtoData.marca);
+                            $('#quantidade').val(produtoData.quantidade);
+                            $('#nomehtml').val(produtoData.nomehtml);
+                            $('#codigo').val(produtoData.codigo);
+                        }
+                    });
+                }
+            });
+
+            $('#valor').on('input', function () {
+                var valorAtual = $(this).val().replace(/\./g, '');
+
+                if (valorAtual.length > 2) {
+                    var parteInteira = valorAtual.slice(0, -2);
+                    var parteDecimal = valorAtual.slice(-2);
+                    $(this).val(parteInteira + '.' + parteDecimal);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <section>
+        <br>
+        <h4 class="center paragrafo_5">Alterar produtos site: </h4>
+        <br>
+        <form class="form_admin center col-md-12" action="DB_produtossite.php" method="POST">
+            <label for="nomeProduto" class="label_admin">Nome do Produto:</label>
+            <input class="input_admin" type="text" id="nomeProduto" name="nomeProduto" required>
+
+            <label for="descricao" class="label_admin">Descrição:</label>
+            <input class="input_admin" type="text" id="descricao" name="descricao" required  >
+
+            <label for="valor" class="label_admin">Valor:</label>
+            <input class="input_admin" type="text" id="valor" name="valor" placeholder="10.99" required pattern="\d{1,3}.\d{2}" >
+
+            <label for="marca" class="label_admin">Marca:</label>
+            <input class="input_admin" type="text" id="marca" name="marca" required >
+
+            <label for="quantidade" class="label_admin">Conteúdo:</label>
+            <input class="input_admin" type="text" id="quantidade" name="quantidade" required >
+
+            <label for="nomehtml" class="label_admin">Código Site:</label>
+            <input class="input_admin" type="text" id="nomehtml" name="nomehtml">
+
+            <label for="codigo" class="label_admin">Código:</label>
+            <input class="input_admin" type="text" id="codigo" name="codigo" readonly>
+
+            <br>
+            <button class="button_admin" type="submit">Enviar</button>
+        </form>
+    </section>
+</body>
+</html>

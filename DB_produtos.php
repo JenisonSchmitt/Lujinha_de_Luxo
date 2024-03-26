@@ -8,7 +8,7 @@ $nome = $_POST['nome'];
 $quantidade = $_POST['quantidade'];
 $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];
-$naocadastrado = 'Não cadastrado';
+$naocadastrado = 'Não_cadastrado';
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -19,7 +19,7 @@ if (!$conn) {
 }
  
 $sql1 = "INSERT INTO produto (codigo, nome, quantidade, valor) VALUES ('$codigo', '$nome', '$quantidade', '$valor')";
-$sql2 = "INSERT INTO produtos_site (codigo, nomehtml, nome, descricao, valor, marca, quantidade) VALUES ('$codigo','$naocadastrado', '$nome', '$descricao', '$valor', '$naocadastrado', '$naocadastrado')";
+$sql2 = "INSERT INTO produtos_site (codigo, nome, descricao, valor, marca, quantidade) VALUES ('$codigo', '$nome', '$descricao', '$valor', '$naocadastrado', '$naocadastrado')";
 
 $result1 = mysqli_query($conn, $sql1);
 $result2 = mysqli_query($conn, $sql2);
@@ -65,7 +65,7 @@ if ($result1 && $result2) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroProduto.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar mais Produtos</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroProduto.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar mais Produtos</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
@@ -117,7 +117,7 @@ if ($result1 && $result2) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroProduto.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar novamente</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroProduto.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar novamente</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
