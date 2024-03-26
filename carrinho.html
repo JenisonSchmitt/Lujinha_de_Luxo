@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>LdL - Carrinho</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="author" content="TemplatesJungle">
+        <meta name="keywords" content='Sua "Lujinha" virtual'>
+        <meta name="description" content='Sua "Lujinha" virtual'>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" type="imagex/png" href="images/icone.ico">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+            // Função para verificar se o cliente está logado
+            function checkLoggedIn() {
+                $.ajax({
+                    url: 'check_login.php',
+                    method: 'GET',
+                    dataType: 'json', // Especifica o tipo de dados esperado como JSON
+                    success: function(response) {
+                        console.log('Resposta do servidor:', response);
+                        if (response.logged_in === true) {
+                            console.log('Cliente está logado!');
+                        } else {
+                            console.log('Cliente não está logado. Redirecionando para login!');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Login ainda não realizado!',
+                                text: 'Por favor, crie uma conta ou faça login para acessar seu carrinho!',
+                                showConfirmButton: true,
+                            }).then(function () {
+                                // Após o usuário visualizar a mensagem, redirecione para a página de login
+                                window.location.href = 'conta.html#info';
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Erro na requisição AJAX:', error);
+                    }
+                });
+            }
+            // Verifica o login quando a página é carregada
+            $(document).ready(function() {
+                console.log('Página carregada. Verificando se o cliente está logado...');
+                checkLoggedIn();
+            });
+        </script>
+        <script>
+            // Declaração global da variável totalPrice
+            var totalPrice = 0;
+            
+            document.addEventListener("DOMContentLoaded", function () {
+                // Função para exibir os itens do carrinho em uma tabela
+                function displayCart() {
+                    var cart = JSON.parse(localStorage.getItem('cart')) || {};
+                    var cartItems = Object.values(cart);
+            
+                    // Limpa a lista de itens do carrinho
+                    $('#cartTableBody').empty();
+            
+                    // Reinicia totalPrice
+                    totalPrice = 0;
+            
+                    // Itera sobre os itens do carrinho
+                    cartItems.forEach(function (item) {
+                        var itemTotal = parseFloat(item.price) * parseInt(item.quantity);
+                        totalPrice += itemTotal;
+            
+                        // Adiciona o item ao carrinho
+                        $('#cartTableBody').append(
+                            '<tr>' +
+                            '<td>' + item.label + '</td>' +
+                            '<td>' + item.quantity + '</td>' +
+                            '<td>R$ ' + item.price + '</td>' +
+                            '<td>R$ ' + itemTotal.toFixed(2) + '</td>' +
+                            '</tr>'
+                        );
+                    });
+            
+                    // Exibe o preço total
+                    $('#totalPrice').text('Total: R$ ' + totalPrice.toFixed(2));
+            
+                    // Adiciona a linha com o valor total no final da tabela
+                    $('#cartTableBody').append(
+                        '<tr>' +
+                        '<td colspan="3" class="text-end"><strong>Total:</strong></td>' +
+                        '<td><strong>R$ ' + totalPrice.toFixed(2) + '</strong></td>' +
+                        '</tr>'
+                    );
+                }
+        
+                function addToCart(product) {
+                    var cart = JSON.parse(localStorage.getItem('cart')) || {};
+        
+                    if (cart[product.id]) {
+                        // Se o produto já existe no carrinho, apenas atualize a quantidade
+                        cart[product.id].quantity += 1;
+                    } else {
+                        // Se o produto não existe, adicione ao carrinho com todas as informações necessárias
+                        cart[product.id] = {
+                            label: product.label,
+                            quantity: 1,
+                            price: product.price  // Certifique-se de incluir o preço aqui
+                        };
+                    }
+        
+                    // Salve o carrinho atualizado no localStorage
+                    localStorage.setItem('cart', JSON.stringify(cart));
+        
+                    // Atualize a exibição do carrinho
+                    displayCart();
+                }
+
+                // Função para finalizar a compra (enviar mensagem no WhatsApp)
+                function finalizeWhats() {
+                    var cart = JSON.parse(localStorage.getItem('cart')) || {};
+                    var mensagem = 'Oi, gostaria de finalizar a compra com os seguintes produtos:';
+
+                    for (var productId in cart) {
+                        var item = cart[productId];
+                        console.log('Item:', item);  // Adicione esta linha para verificar os itens no console
+                        mensagem += '\n- ' + item.label + ', Quantidade: ' + item.quantity;
+                    }
+
+                    var linkWhatsApp = 'https://api.whatsapp.com/send?phone=48991383245&text=' + encodeURIComponent(mensagem);
+                    window.location.href = linkWhatsApp;
+                }
+
+                function finalizeCre() {
+                    var cart = JSON.parse(localStorage.getItem('cart')) || {};
+                    var mensagem = 'Oi, realizei o pagamento via Cartão de Crédito dos seguintes produtos:';
+
+                    for (var productId in cart) {
+                        var item = cart[productId];
+                        console.log('Item:', item);  // Adicione esta linha para verificar os itens no console
+                        mensagem += '\n- ' + item.label + ', Quantidade: ' + item.quantity;
+                    }
+
+                    var linkWhatsApp = 'https://api.whatsapp.com/send?phone=48991383245&text=' + encodeURIComponent(mensagem);
+                    window.location.href = linkWhatsApp;
+                }
+                
+                function finalizePix() {
+                    var cart = JSON.parse(localStorage.getItem('cart')) || {};
+                    var mensagem = 'Oi, realizei o pagamento via PIX dos seguintes produtos:';
+
+                    for (var productId in cart) {
+                        var item = cart[productId];
+                        console.log('Item:', item);  // Adicione esta linha para verificar os itens no console
+                        mensagem += '\n- ' + item.label + ', Quantidade: ' + item.quantity;
+                    }
+
+                    var linkWhatsApp = 'https://api.whatsapp.com/send?phone=48991383245&text=' + encodeURIComponent(mensagem);
+                    window.location.href = linkWhatsApp;
+                }
+            
+                function limparCarrinho() {
+                    // Limpa o carrinho no localStorage
+                    localStorage.removeItem('cart');
+
+                    // Atualiza a exibição do carrinho
+                    displayCart();
+                }
+
+                // Expondo as funções globalmente
+                window.addToCart = addToCart;
+                window.limparCarrinho = limparCarrinho;
+                window.finalizeWhats = finalizeWhats;
+                window.finalizeCre = finalizeCre;
+                window.finalizePix = finalizePix;
+
+
+                // Atualize a exibição do carrinho ao carregar a página
+                displayCart();
+            });
+        </script>
+        <script>        
+                function cadastrarVenda(){
+                    var cart = JSON.parse(localStorage.getItem('cart')) || {};
+                    // Itera sobre os itens do carrinho para construir o array de produtos
+                    for (var productId in cart) {
+                        var item = cart[productId];
+                        produtos.push({
+                            nome_produto: item.label,
+                            quantidade: item.quantity,
+                            preco_total: parseFloat(item.price) * parseInt(item.quantity)
+                        });
+                    }
+            
+                    // Exibe os dados dos produtos no console para verificação
+                    console.log('Dados dos produtos do carrinho:', produtos);
+            
+                    // Realiza a chamada AJAX para enviar os dados dos produtos do carrinho para venda_site.php
+                    $.ajax({
+                        url: 'venda_site.php',
+                        method: 'POST',
+                        data: { cart: produtos },
+                        success: function(response) {
+                            console.log('Resposta do servidor:', response);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Erro na requisição AJAX:', error);
+                            console.log('Status da requisição:', status);
+                            console.log('XHR:', xhr);
+                        }
+                    });
+                }
+        </script>
+        <script>
+            function copyChavePIX() {
+                var chavePIXInput = document.getElementById('chavePIXInput');
+                chavePIXInput.select();
+                document.execCommand('copy');
+
+                // Mostrando a mensagem de feedback
+                var chavePIXMessage = document.getElementById('chavePIXMessage');
+                chavePIXMessage.innerHTML = 'Chave PIX copiada para a área de transferência.';
+                chavePIXMessage.style.display = 'block';
+
+                // Agora, vamos esconder a mensagem após alguns segundos
+                setTimeout(function() {
+                    chavePIXMessage.style.display = 'none';
+                }, 2000); // Defina o tempo em milissegundos que deseja que a mensagem permaneça visível
+            }
+        </script>
+        <script>
+            var produtos = [];
+        
+            // Função para mostrar as opções de pagamento
+            function showPaymentOptions() {
+                Swal.fire({
+                    title: 'Selecione a forma de pagamento',
+                    showCancelButton: false,
+                    confirmButtonText: 'Voltar',
+                    html: `
+                        <button class="input_login center" type="submit" id="cartaoCreditoBtn">Cartão de Crédito</button><br>
+                        <button class="input_login center" type="submit" id="pixBtn">PIX</button><br>
+                        <button class="input_login center" type="submit" id="whatsappBtn">Conversar no WhatsApp</button><br>
+                    `
+                });
+
+                document.getElementById('cartaoCreditoBtn').addEventListener('click', function() {
+                    // Formata o totalPrice para ter duas casas decimais e substitui pontos por virgulas
+                    var totalPriceFormatted = totalPrice.toFixed(2).replace('.', ',');
+                    var url = 'https://pay.infinitepay.io/lujinhadeluxo/' + totalPriceFormatted;
+                    Swal.fire({
+                        title: 'Pagamento com Cartão de Crédito',
+                        html: '<iframe src="' + url + '" width="100%" height="400"></iframe><p style="margin-top: 10px;">Já finalizou o pagamento? 👇</p>',
+                        showCancelButton: false,
+                        confirmButtonText: 'Concluir pedido',
+                        preConfirm: function() {
+                            finalizeCre();
+                        }
+                    });
+                });
+
+                document.getElementById('pixBtn').addEventListener('click', function() {
+                    var chavePIX = 'lujinhadeluxo@meu.pix';
+                    var totalPriceFormatted = totalPrice.toFixed(2).replace('.', ',');
+                    Swal.fire({
+                        title: 'Pagamento via Pix',
+                        html: `
+                            <strong>Valor: ${totalPriceFormatted}</strong>
+                            <input id="chavePIXInput" class="swal2-input" value="${chavePIX}" readonly>
+                            <button id="copiarChavePIXBtn" class="input_login" type="submit">Copiar Chave PIX</button>
+                            <p style="margin-top: 10px;">Já realizou o pagamento via PIX? 👇</p>
+                            <div id="chavePIXMessage" style="display: none; margin-top: 10px;"></div>
+                        `,
+                        showCancelButton: false,
+                        confirmButtonText: 'Concluir pedido',
+                        preConfirm: function() {
+                            finalizePix();
+                        },
+                    });
+
+                    // Adicionando um manipulador de eventos ao botão de cópia da chave PIX
+                    document.getElementById('copiarChavePIXBtn').addEventListener('click', function(event) {
+                        event.stopPropagation(); // Impede que o evento de clique se propague até o popup
+                        copyChavePIX();
+                    });
+                });
+
+                document.getElementById('whatsappBtn').addEventListener('click', function() {
+                    // Chamando a função finalizeCompra quando o botão WhatsApp for clicado
+                    finalizeWhats();
+                    Swal.close();
+                });
+            }
+            // Chama a função para exibir o popup ao carregar a página
+            showPaymentOptions(produtos);
+        </script> 
+    </head>
+    <body>
+        <div class="preloader"></div>
+        <header id="header" class="onepage-menu fixed">
+            <div id="header-wrap">
+                <div class="main-logo">
+                    <a href="index.html">LdL.</a>
+                </div>
+                <div class="side-nav-login2">
+                    <a href="login.html#logar">
+                    <span class="ic--baseline-account-circle"></span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <section id="intro" class="scrollspy-section">
+            <div class="main-slider">
+                <div class="slider-item jarallax-keep-img">
+                    <img src="images/foto15.png" alt="banner" class="jarallax-img">
+                    <div class="banner-content">
+                        <br>
+                        <br>
+                        <br>
+                        <h3 class="banner-title txt-fx">Carrinho de Compras</h3>
+                        <div class="btn-wrap">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <div class="container" id="cartItems">
+            <!-- Aqui serão exibidos os itens do carrinho na tabela -->
+            <table class="mx-auto">
+                <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Preço Unitário</th>
+                        <th scope="col">Preço Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                    <!-- Os itens do carrinho serão adicionados aqui dinamicamente -->
+                </tbody>
+            </table>
+            <p class="text-end"><strong>Parcelamento em até 3x SEM JUROS</strong></p>
+            <p class="falta_"><strong>Frete NÃO incluso, consulte valores via WhatsApp!</strong></p>
+        </div>
+        <div class="center text-center">
+            <button onclick="limparCarrinho()" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Limpar Carrinho</button>
+            <button onclick="showPaymentOptions(); cadastrarVenda()" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Finalizar Pedido</button>
+        </div>
+        <hr><br>
+        <div class="center">
+            <a href="produtosSK.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Skincare</a>
+            <a href="produtosMQ.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Maquiagem</a>
+            <a href="produtosHI.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Hidratantes</a>
+            <br><br>
+        </div>
+        <section class="scrollspy-section padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="section-header col-12">
+                        <div class="title">
+                            <span>Confira nossas regras de entregas</span>
+                        </div>
+                        <h2 class="section-title">Entregas</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">01</span>
+                            <h3>Tubarão/SC</h3>
+                            <p>Entregas nos bairros Oficinas, Centro e Vila Moema são gratuítas! Demais bairros da cidade haverá uma taxa de frete fixa de apenas R$5.00!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">02</span>
+                            <h3>Amurel/SC</h3>
+                            <p>Entregas nas regiões de Capivari, Jaguaruna e Laguna, possuem valores de R$10.00, R$15.00 e R$20.00 respectivamente.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">03</span>
+                            <h3>Entregas para o Brasil</h3>
+                            <p>Entregas em demais localidades favor entrar em contato com um dos nossos representantes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonial" class="scrollspy-section bg-personality_24 padding-large">
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-menu menu-item-01">
+                                <img src="images/logo_.png" alt="Lujinha" width="100" height="100" class="footer-logo">
+                                <p class="paragrafo_1">Buscaremos sempre lhe atender da melhor forma, buscando sempre uma performance que lhe agrade cada vez mais</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-menu menu-item-02">
+                                <h5>Outros serviços</h5>
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a href="index.html">Página Principal</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#sobrenos">Nossos Objetivos</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#diferencial">Nosso Diferencial</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="faleconosco.html">Fale Conosco</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#sobrenos">Sobre Nós</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#nossotime">Nosso Time</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-menu menu-item-03">
+                                <h5>Informações de Contato</h5>
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-location"></i>Centro, Tubarão/SC</p>
+                                    </li>
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-location2"></i>@lujinhadeluxo</p>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="https://api.whatsapp.com/send?phone=48991383245&amp;text=Olá, gostaria de mais informações sobre os produtos!" target="_blank" class="paragrafo">
+                                            <p>
+                                            <iconify-icon icon="akar-icons:whatsapp-fill">   </iconify-icon>     (48) 9 9138-3245</p>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-envelope-o"></i>lujinhadeluxo@gmail.com</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <div id="testimonial_" class="scrollspy-section bg-personality_5 padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="copyright">
+                            <p>© 2022 Archi. All rights reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="copyright text-right">
+                            <p>HTML Template by <a href="https://www.templatesjungle.com/"
+                                    target="_blank">TemplatesJungle</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/ui-easing.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

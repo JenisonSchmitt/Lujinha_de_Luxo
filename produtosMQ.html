@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-BR">
+    <head>
+        <title>LdL - Maquiagens</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="author" content="TemplatesJungle">
+        <meta name="keywords" content='Sua "Lujinha" virtual'>
+        <meta name="description" content='Sua "Lujinha" virtual'>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" type="imagex/png" href="images/icone.ico">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="js/scriptprodutos.js"></script>
+    </head>
+    <body>
+        <div class="preloader"></div>
+        <header id="header" class="onepage-menu fixed">
+            <div id="header-wrap">
+                <div class="main-logo">
+                    <a href="index.html">LdL.</a>
+                </div>
+                <div class="side-nav-bar">
+                    <div class="side-nav-car">
+                        <a href="carrinho.html#cartItems">
+                        <iconify-icon icon="mdi-light:cart" style="color: #FFA4DB;" width="50" height="50"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+                <div class="side-nav-login">
+                    <a href="login.html#logar">
+                    <span class="ic--baseline-account-circle"></span>
+                    </a>
+                </div>
+            </div><!--header-wrap-->
+        </header>
+        <section id="intro" class="scrollspy-section">
+            <div class="main-slider">
+                <div class="slider-item jarallax-keep-img">
+                    <img src="images/foto13.png" alt="banner" class="jarallax-img">
+                    <div class="banner-content">
+                        <br>
+                        <br>
+                        <br>
+                        <h3 class="banner-title txt-fx">Produtos de Maquiagem</h3>
+                        <div class="btn-wrap">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="scrollspy-section bg-personality_25 padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-header">
+                            <div class="title">
+                                <span>Produtos para o visual</span>
+                            </div>
+                            <h2 class="section-title light">Maquiagens</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                    <div class="product-carousel">
+                        <button class="button-styledd" onclick="showProductSection('olhos')">
+                            <img src="images/icones/iconeolhos.png" width="90" alt="Maquiagem" class="icon">Olhos
+                        </button>
+                        <button class="button-styledd" onclick="showProductSection('face')">
+                            <img src="images/icones/iconeface.png" width="90" alt="Maquiagem" class="icon">Face
+                        </button>
+                        <button class="button-styledd" onclick="showProductSection('boca')">
+                            <img src="images/icones/iconeboca.png" width="90" alt="Maquiagem" class="icon">Boca
+                        </button>
+                        <button class="button-styledd" onclick="showProductSection('acessorios')">
+                            <img src="images/icones/iconeacessoriosmq.png" width="90" alt="Skincare" class="icon">Acessórios
+                        </button>
+                        <br>
+                    </div>
+                </div> 
+                <hr>
+                <section id="olhos" class="scrollspy-section product-section-nav">
+                    <p class="btn btn-outline-light rounded-pill text-uppercase is-checked">Olhos</p>
+                    <br>
+                    <br>		
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos1">
+                            <a href="produtos/Olhos1.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos1.jpg" alt="olhos" class="img-fluid">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos1">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos1')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos2">
+                            <a href="produtos/Olhos2.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos2.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos2">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos2')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos3">
+                            <a href="produtos/Olhos3.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos3.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos3">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos3')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos4">
+                            <a href="produtos/Olhos4.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos4.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos4">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos4')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos5">
+                            <a href="produtos/Olhos5.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos5.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos5">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos5')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos6">
+                            <a href="produtos/Olhos6.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos6.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos6">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos6')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos7">
+                            <a href="produtos/Olhos7.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos7.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos7">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos7')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos8">
+                            <a href="produtos/Olhos8.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos8.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos8">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos8')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item olhos center" id="Olhos9">
+                            <a href="produtos/Olhos9.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/olhos9.jpg" class="img-fluid" alt="olhos">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Olhos9">
+                            <button class="button_car" type="button" onclick="addToCart('Olhos9')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                </section>
+                <section id="face" class="scrollspy-section product-section-nav">
+                    <p class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Face</p>
+                    <br>
+                    <br>
+                    <!--divisão-->
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item face center" id="Face1">
+                            <a href="produtos/Face1.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/face1.jpg" class="img-fluid" alt="face">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Face1">
+                            <button class="button_car" type="button" onclick="addToCart('Face1')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item face center" id="Face2">
+                            <a href="produtos/Face2.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/face5.jpg" class="img-fluid" alt="face">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Face2">
+                            <button class="button_car" type="button" onclick="addToCart('Face2')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item face center" id="Face3">
+                            <a href="produtos/Face3.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/face6.jpg" class="img-fluid" alt="face">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Face3">
+                            <button class="button_car" type="button" onclick="addToCart('Face3')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item face center" id="Face4">
+                            <a href="produtos/Face4.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/face7.jpg" class="img-fluid" alt="face">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Face4">
+                            <button class="button_car" type="button" onclick="addToCart('Face4')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item boca center" id="Face5">
+                            <a href="produtos/Face5.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/face8.jpg" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Face5">
+                            <button class="button_car" type="button" onclick="addToCart('Face5')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item face center" id="Face6">
+                            <a href="produtos/Face6.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/face9.png" class="img-fluid" alt="face">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Face6">
+                            <button class="button_car" type="button" onclick="addToCart('Face6')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                </section>
+                <section id="boca" class="scrollspy-section product-section-nav">
+                    <p class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Boca</p>
+                    <br>
+                    <br>
+                    <!--divisão-->
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item boca center" id="Boca1">
+                            <a href="produtos/Boca1.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/boca1.jpg" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Boca1">
+                            <button class="button_car" type="button" onclick="addToCart('Boca1')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item boca center" id="Boca2">
+                            <a href="produtos/Boca2.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/boca2.jpg" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Boca2">
+                            <button class="button_car" type="button" onclick="addToCart('Boca2')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item boca center" id="Boca3">
+                            <a href="produtos/Boca3.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/boca3.png" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Boca3">
+                            <button class="button_car" type="button" onclick="addToCart('Boca3')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item boca center" id="Boca4">
+                            <a href="produtos/Boca4.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/boca4.png" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Boca4">
+                            <button class="button_car" type="button" onclick="addToCart('Boca4')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item boca center" id="Boca5">
+                            <a href="produtos/Boca5.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/boca6.jpg" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Boca5">
+                            <button class="button_car" type="button" onclick="addToCart('Boca5')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item boca center" id="Boca6">
+                            <a href="produtos/Boca6.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/boca7.jpg" class="img-fluid" alt="boca">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Boca6">
+                            <button class="button_car" type="button" onclick="addToCart('Boca6')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                </section>
+                <section id="acessorios" class="scrollspy-section product-section-nav">
+                    <p class="btn btn-outline-light rounded-pill text-uppercase is-checked">Acessórios</p>
+                    <br>
+                    <br>
+                    <!--divisão-->
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item acessorios center" id="Acessorios1">
+                            <a href="produtos/Acessorios1.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/acessorios1.jpg" class="img-fluid" alt="acessorios">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Acessorios1">
+                            <button class="button_car" type="button" onclick="addToCart('Acessorios1')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item acessorios center" id="Acessorios2">
+                            <a href="produtos/Acessorios2.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/acessorios2.jpg" class="img-fluid" alt="acessorios">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Acessorios2">
+                            <button class="button_car" type="button" onclick="addToCart('Acessorios2')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item acessorios center" id="Acessorios3">
+                            <a href="produtos/Acessorios3.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/acessorios4.jpg" class="img-fluid" alt="acessorios">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Acessorios3">
+                            <button class="button_car" type="button" onclick="addToCart('Acessorios3')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                        <div class="col mb-4 portfolio-item acessorios center" id="Acessorios4">
+                            <a href="produtos/Acessorios4.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/acessorios5.jpg" class="img-fluid" alt="acessorios">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Acessorios4">
+                            <button class="button_car" type="button" onclick="addToCart('Acessorios4')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                    <div class="row row-cols-2 row-cols-lg-2 row-cols-xl-2" data-aos="fade-up">
+                        <div class="col mb-4 portfolio-item acessorios center" id="Acessorios5">
+                            <a href="produtos/Acessorios5.html#Maquiagem">
+                            <h3 class="titulo"></h3>
+                            <img src="images/acessorios6.jpg" class="img-fluid" alt="acessorios">
+                            <h6 class="saibamais">Clique e saiba mais</h6>
+                            <h6 class="disponivel"></h6><br></a><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><br>
+                            <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Acessorios5">
+                            <button class="button_car" type="button" onclick="addToCart('Acessorios5')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <hr>
+                </section>
+                <br><br>
+                <div class="center">
+                    <a href="produtosSK.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Skincare</a>
+                    <a href="produtosHI.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Hidratantes</a>
+                    <br><br><br><br>
+                </div>
+                <div class="center">
+                    <a href="carrinho.html#cartItems">
+                    <footer class="btn btn-accent btn-rounded btn-xlarge ">Acessar Carrinho</footer>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="maquiagem/labios" class="scrollspy-section padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="section-header col-12">
+                        <div class="title">
+                            <span>Confira nossas regras de entregas</span>
+                        </div>
+                        <h2 class="section-title">Entregas</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">01</span>
+                            <h3>Tubarão/SC</h3>
+                            <p>Entregas nos bairros Oficinas, Centro e Vila Moema são gratuítas! Demais bairros da cidade haverá uma taxa de frete fixa de apenas R$5.00!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">02</span>
+                            <h3>Amurel/SC</h3>
+                            <p>Entregas nas regiões de Capivari, Jaguaruna e Laguna, possuem valores de R$10.00, R$15.00 e R$20.00 respectivamente.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">03</span>
+                            <h3>Entregas para o Brasil</h3>
+                            <p>Entregas em demais localidades favor entrar em contato com um dos nossos representantes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="scrollspy-section bg-personality_12 padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="left-content">
+                            <div class="section-header">
+                                <div class="title">
+                                    <span>Onde nos encontrar</span>
+                                </div>
+                                <h2 class="section-title light">Onde estamos localizados</h2>
+                            </div>
+                            <p>Estamos buscando sempre expansão do nosso mapa, caso ainda não atendemos na sua região, por favor, nos encaminhe uma mensagem!</p>
+                            <form id="form-contact_" class="form-light" action="contato.php" method="POST">
+                                <p>
+                                    <input type="text" name="name" placeholder="Seu primeiro nome" required>
+                                </p>
+                                <p>
+                                    <input type="text" name="cpf" placeholder="Seu CPF" required>
+                                </p>
+                                <p>
+                                    <textarea name="message" placeholder="Sua solicitação" required></textarea>
+                                </p>
+                                <p>
+                                    <label for="agree">
+                                        <input id="agree" name="agree" type="checkbox" required>
+                                        <span>__Eu concordo com as políticas de privacidade</span>
+                                    </label>
+                                </p>
+                                <button class="btn btn-accent btn-rounded btn-xlarge btn-full">Enviar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="right-content">
+                            <div class="iconbox">
+                                <i class="icon icon-location"></i>
+                                <div class="detail">
+                                    <strong>Endereço:</strong>
+                                    <p>Centro, Tubarão/SC</p>
+                                </div>
+                            </div>
+                            <div class="iconbox">
+                                <i class="icon icon-phone"></i>
+                                <div class="detail">
+                                    <strong>Telefone:</strong>
+                                    <p>(48) 9 9138-3245</p>
+                                </div>
+                            </div>
+                            <div class="iconbox">
+                                <i class="icon icon-mail3"></i>
+                                <div class="detail">
+                                    <strong>Email:</strong>
+                                    <p><a href="#">lujinhadeluxo@gmail.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonial" class="scrollspy-section bg-personality_13 padding-large">
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-menu menu-item-01">
+                                <img src="images/logo_.png" alt="Lujinha" width="100" height="100" class="footer-logo">
+                                <p class="paragrafo_1">Buscaremos sempre lhe atender da melhor forma, buscando sempre uma performance que lhe agrade cada vez mais</p>
+                                <div class="social-links">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon icon-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-behance-square"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-menu menu-item-02">
+                                <h5>Outros serviços</h5>
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a href="index.html">Página Principal</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#sobrenos">Nossos Objetivos</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#diferencial">Nosso Diferencial</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="faleconosco.html">Fale Conosco</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#sobrenos">Sobre Nós</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#nossotime">Nosso Time</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-menu menu-item-03">
+                                <h5>Informações de Contato</h5>
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-location"></i>Centro, Tubarão/SC</p>
+                                    </li>
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-location2"></i>@lujinhadeluxo</p>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="https://api.whatsapp.com/send?phone=48991383245&amp;text=Olá, gostaria de mais informações sobre os produtos!" target="_blank" class="paragrafo">
+                                            <p>
+                                            <iconify-icon icon="akar-icons:whatsapp-fill">   </iconify-icon>     (48) 9 9138-3245</p>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-envelope-o"></i>lujinhadeluxo@gmail.com</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<div class="col-md-3">
+                            <div class="footer-menu menu-item-04">
+                                <h5>Galeria de Fotos</h5>
+                                <div class="gallery">
+                                    <a href="images/foto18.jpg" data-lightbox-gallery="gallery1"
+                                        title="Calm Before The Storm (One Shoe Photography Ltd.)" class="image-link"><img
+                                            src="images/foto18.jpg" alt="house" class="gallery-image"></a>
+                                    <a href="images/foto19.jpg" data-lightbox-gallery="gallery1"
+                                        title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))" class="image-link"><img
+                                            src="images/foto19.jpg" alt="house" class="gallery-image"></a>
+                                    <a href="images/foto20.jpg" data-lightbox-gallery="gallery1"
+                                        title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))" class="image-link"><img
+                                            src="images/foto20.jpg" alt="house" class="gallery-image"></a>
+                                    <a href="images/foto22.jpg" data-lightbox-gallery="gallery1"
+                                        title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))" class="image-link"><img
+                                            src="images/foto22.jpg" alt="house" class="gallery-image"></a>
+                                    <a href="images/foto21.jpg" data-lightbox-gallery="gallery1"
+                                        title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))" class="image-link"><img
+                                            src="images/foto21.jpg" alt="house" class="gallery-image"></a>
+                                    <a href="images/foto23.jpg" data-lightbox-gallery="gallery1"
+                                        title="Grasmere Lake (Phil 'the link' Whittaker (gizto29))" class="image-link"><img
+                                            src="images/foto23.jpg" alt="house" class="gallery-image"></a>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <div id="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="copyright">
+                            <p>© 2022 Archi. All rights reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="copyright text-right">
+                            <p>HTML Template by <a href="https://www.templatesjungle.com/"
+                                    target="_blank">TemplatesJungle</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/ui-easing.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

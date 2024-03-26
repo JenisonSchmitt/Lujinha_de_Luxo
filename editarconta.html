@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>LdL - Editar Conta</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="author" content="TemplatesJungle">
+        <meta name="keywords" content='Sua "Lujinha" virtual'>
+        <meta name="description" content='Sua "Lujinha" virtual'>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="icomoon/icomoon.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" type="imagex/png" href="images/icone.ico">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>        
+            function validarFormulario() {
+                console.log("Atualizando dados...");
+                var email = document.getElementById("email").value.trim();
+                var telefone = document.getElementById("telefone").value.trim();
+                var endereco = document.getElementById("endereco").value.trim();    
+                var isValid = true;
+
+                // Verifica se o email está vazio
+                if (email === "") {
+                    document.getElementById("email_error").innerHTML = "Por favor, informe seu email.";
+                    isValid = false;
+                } else if (!/\S+@\S+\.\S+/.test(email)) { // Verifica se o email está no formato correto
+                    document.getElementById("email_error").innerHTML = "Por favor, informe um email válido.";
+                    isValid = false;
+                } else {
+                    document.getElementById("email_error").innerHTML = "";
+                }
+        
+                // Verifica se o telefone está vazio
+                if (telefone === "") {
+                    document.getElementById("telefone_error").innerHTML = "Por favor, informe seu telefone.";
+                    isValid = false;
+                } else if (telefone.length < 14) { // Verifica se o telefone está completo
+                    document.getElementById("telefone_error").innerHTML = "Por favor, informe um telefone válido.";
+                    isValid = false;
+                } else {
+                    document.getElementById("telefone_error").innerHTML = "";
+                }
+        
+                return isValid;
+
+                if (isValid) {
+                    document.querySelector("form").submit();
+                }
+            }
+        </script>
+        <script>
+            function formatarTelefone(campo) {
+                var valor = campo.value.replace(/\D/g, '');
+                valor = valor.replace(/(\d{2})(\d{4,5})(\d{4})/, '($1) $2-$3');
+                campo.value = valor;
+            }
+        </script>
+        <script>
+            // Função para retornar para a página anterior
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </head>
+    <body>
+        <div class="preloader"></div>
+        <header id="header" class="onepage-menu fixed">
+            <div id="header-wrap">
+                <nav id="navbar">
+                    <div class="main-logo">
+                        <a href="index.html">LdL.</a>
+                    </div>
+                </nav>
+            </div><!--header-wrap-->
+        </header>
+        <section id="intro" class="scrollspy-section">
+            <div class="main-slider">
+                <div class="slider-item jarallax-keep-img">
+                    <img src="images/foto15.png" alt="banner" class="jarallax-img">
+                    <div class="banner-content">
+                        <br>
+                        <br>
+                        <br>
+                        <h3 class="banner-title txt-fx">Editar Conta</h3>
+                        <div class="btn-wrap">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br><br><br>
+        <section id="editar" class="bg-personality_18">
+            <div class="bg-personality_26 container_login" id="cartItems">
+                <form class="form_login" method="post" onsubmit="return validarFormulario()" action="editarconta.php"><br>
+                    <label class="label_login" for="email">Email:</label>
+                    <input class="input_login" type="email" id="email" name="email"placeholder="exemplo@gmail.com"required>
+                    <span id="email_error" class="error-message"></span><br>
+
+                    <label class="label_login" for="telefone">Telefone Celular:</label>
+                    <input class="input_login" type="tel" id="telefone" name="telefone" placeholder="(99) 12345-6789" oninput="formatarTelefone(this)" required>
+                    <span id="telefone_error" class="error-message"></span><br>
+
+                    <label class="label_login" for="endereco">Endereço:</label>
+                    <input class="input_login" type="text" id="endereco" name="endereco" placeholder="Rua, Bairro e Cidade" required>
+                    <br>
+                    <input class="input_login" type="submit" value="Atualizar Dados">
+                    <h5 onclick="goBack()" class="center h5_login">Voltar</h5>
+                </form>
+            </div>
+        </section>
+        <br>
+        <div class="center">
+            <a href="produtosSK.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Skincare</a>
+            <a href="produtosMQ.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Maquiagem</a>
+            <a href="produtosHI.html" class="btn btn-outline-dark rounded-pill text-uppercase is-checked">Hidratantes</a>
+            <br><br>
+        </div>
+        <section class="scrollspy-section padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="section-header col-12">
+                        <div class="title">
+                            <span>Confira nossas regras de entregas</span>
+                        </div>
+                        <h2 class="section-title">Entregas</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">01</span>
+                            <h3>Tubarão/SC</h3>
+                            <p>Entregas nos bairros Oficinas, Centro e Vila Moema são gratuítas! Demais bairros da cidade haverá uma taxa de frete fixa de apenas R$5.00!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">02</span>
+                            <h3>Amurel/SC</h3>
+                            <p>Entregas nas regiões de Capivari, Jaguaruna e Laguna, possuem valores de R$10.00, R$15.00 e R$20.00 respectivamente.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="services-item">
+                            <span class="number">03</span>
+                            <h3>Entregas para o Brasil</h3>
+                            <p>Entregas em demais localidades favor entrar em contato com um dos nossos representantes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="testimonial" class="scrollspy-section bg-personality_24 padding-large">
+            <footer id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-menu menu-item-01">
+                                <img src="images/logo_.png" alt="Lujinha" width="100" height="100" class="footer-logo">
+                                <p class="paragrafo_1">Buscaremos sempre lhe atender da melhor forma, buscando sempre uma performance que lhe agrade cada vez mais</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="footer-menu menu-item-02">
+                                <h5>Outros serviços</h5>
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <a href="index.html">Página Principal</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#sobrenos">Nossos Objetivos</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#diferencial">Nosso Diferencial</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="faleconosco.html">Fale Conosco</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#sobrenos">Sobre Nós</a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="sobrenos.html#nossotime">Nosso Time</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="footer-menu menu-item-03">
+                                <h5>Informações de Contato</h5>
+                                <ul class="menu-list">
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-location"></i>Centro, Tubarão/SC</p>
+                                    </li>
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-location2"></i>@lujinhadeluxo</p>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="https://api.whatsapp.com/send?phone=48991383245&amp;text=Olá, gostaria de mais informações sobre os produtos!" target="_blank" class="paragrafo">
+                                            <p>
+                                            <iconify-icon icon="akar-icons:whatsapp-fill">   </iconify-icon>     (48) 9 9138-3245</p>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <p class="paragrafo">
+                                        <i class="icon icon-envelope-o"></i>lujinhadeluxo@gmail.com</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        <div id="testimonial_" class="scrollspy-section bg-personality_5 padding-large">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="copyright">
+                            <p>© 2022 Archi. All rights reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="copyright text-right">
+                            <p>HTML Template by <a href="https://www.templatesjungle.com/"
+                                    target="_blank">TemplatesJungle</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/ui-easing.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>
