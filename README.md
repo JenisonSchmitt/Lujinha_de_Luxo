@@ -16,3 +16,5 @@ PHP: Utilizado para o desenvolvimento do lado do servidor, processando dados e g
 
 Como Contribuir
 Sua contribuição é bem-vinda para aprimorar e expandir a Lujinha de Luxo. Se você é apaixonado por desenvolvimento web e deseja contribuir para a evolução desta loja virtual de luxo, sinta-se à vontade para enviar pull requests com melhorias, correções de bugs ou novos recursos.
+
+Site: www.lujinhadeluxo.com.br
