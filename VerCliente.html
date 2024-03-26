@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+<body>
+    <div>
+        <div class='btn-wrap'>
+            <br>
+            <br>
+            <form class="center" action="DB_VerCliente.php" method="post">
+                <button class="btn btn-accent btn-xlarge btn-rounded" type="submit">Ver todos os Clientes</button>
+            </form>
+        </div>
+        <div class='table-wrap center'>
+            <?php include 'DB_VerCliente.php'; ?>
+        </div>
+    </div>
+</body>
+</html>

@@ -59,7 +59,7 @@ if (mysqli_query($conn, $sql)) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroCliente.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar mais Clientes</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroCliente.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar mais Clientes</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
@@ -111,7 +111,7 @@ if (mysqli_query($conn, $sql)) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroClientehtml' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar novamente</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroClientehtml' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar novamente</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>

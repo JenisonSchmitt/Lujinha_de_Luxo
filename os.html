@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang='pt'>
+<head>
+    <title>LdL - Lujinha de Luxo</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='format-detection' content='telephone=no'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='author' content='TemplatesJungle'>
+    <meta name='keywords' content='Sua "Lujinha" virtual'>
+    <meta name='description' content='Sua "Lujinha" virtual'>
+    <link rel='stylesheet' type='text/css' href='icomoon/icomoon.css'>
+    <link rel='stylesheet' type='text/css' href='css/vendor.css'>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css' rel='stylesheet'
+        integrity='sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9' crossorigin='anonymous'>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap'
+        rel='stylesheet'>
+    <link rel="shortcut icon" type="imagex/png" href="images/icone.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+    <script src='js/ui-easing.js'></script>
+    <script src='https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js'></script>
+    <script src='js/plugins.js'></script>
+    <script src='js/script.js'></script>
+    <!-- Adicione a biblioteca html2pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Configurar o Autocomplete para o nome do cliente
+            $('#nome_cli').autocomplete({
+                source: function (request, response) {
+                    // Fazer uma solicitação AJAX para buscar nomes
+                    $.ajax({
+                        url: 'buscar_nomevenda.php',
+                        dataType: 'json',
+                        data: {
+                            term: request.term
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function (event, ui) {
+                    console.log(ui.item);
+                    $('#nome_cli').val(ui.item.value);
+
+                    $.ajax({
+                        url: 'buscar_datavenda.php',
+                        dataType: 'json',
+                        data: {
+                            cliente_nome: ui.item.value
+                        },
+                        success: function (datas) {
+                            console.log("Datas de compra:", datas);
+
+                            if (datas.length > 0) {
+                                $('#data').val(datas[0]);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Erro na solicitação AJAX para buscar datas:', status, error);
+                        }
+                    });
+
+                    return false;
+                }
+            });
+            $('#enviarBtn').on('click', function () {
+                console.log('Botão clicado!');
+
+                var nomeCliente = $('#nome_cli').val();
+                var dataCompra = $('#data').val();
+
+                $.ajax({
+                    url: 'DB_os.php',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        nome_cli: nomeCliente,
+                        data: dataCompra
+                    },
+                    success: function (resultados) {
+                        console.log('Resultados recebidos:', resultados);
+
+                        if (resultados.length > 0) {
+                            exibirResultadoTabela(resultados);
+                        } else {
+                            console.log('Nenhum resultado encontrado.');
+                            $('#resultadoTabela').html('');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Erro na solicitação AJAX:', status, error);
+                    }
+                });
+            });
+            $('#downloadBtn').on('click', function () {
+                // Obtém o elemento da tabela
+                var table = document.getElementById('resultadoTabela');
+
+                // Configuração para o html2pdf
+                var options = {
+                    margin: 10,
+                    filename: 'osLdL.pdf',
+                    image: { type: 'jpeg', quality: 100.0 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                };
+
+                // Usa html2pdf para gerar o PDF
+                html2pdf(table, options)
+                    .then(function (pdf) {
+                        // Salva o documento PDF
+                        pdf.save();
+                    })
+                    .catch(function (error) {
+                        console.error('Erro ao gerar o PDF:', error);
+                    });
+            });
+        });
+        function exibirResultadoTabela(resultados) {
+            var tabelaHTML = '<div class="row justify-content-center">';
+            for (var i = 0; i < resultados.length; i++) {
+                var totalValor = 0;
+
+                tabelaHTML += '<div class="col-md-6">';
+                tabelaHTML += '<table id="exportTable' + i + '" class="table table-bordered table-striped">';
+                tabelaHTML += '<thead><tr><th class="text-center"><img src="images/logo_.png" alt="Lujinha" width="100" height="100" class="footer-logo"></th><th colspan="2" class="text-center">Lujinha de luxo<br>A sua Lujinha Virtual</th><th class="text-center">(48) 9 99138-3245<br>@lujinhadeluxo<br>lujinhadeluxo@gmail.com</th></tr>';
+                tabelaHTML += '<tr><th colspan="4" class="text-center">Nota de Serviço</th></tr>';
+                tabelaHTML += '<tr><th class="text-center">Cliente:</th><th colspan="3">' + resultados[i].cliente_nome + '</th></tr>';
+                tabelaHTML += '<tr><th class="text-center">Data da Compra:</th><th colspan="3">' + resultados[i].dia + '</th></tr>';
+                tabelaHTML += '<tbody>';
+                tabelaHTML += '<tr><th colspan="4"></th></tr>';
+                tabelaHTML += '<tr><th class="text-center">ID da compra</th><th class="text-center">Produto</th><th class="text-center">Quantidade Vendida</th><th class="text-center">Valor</th></tr>';
+
+                while (i < resultados.length && resultados[i].cliente_nome === resultados[0].cliente_nome && resultados[i].dia === resultados[0].dia) {
+                    tabelaHTML += '<tr>';
+                    tabelaHTML += '<td class="text-center">' + resultados[i].id + '</td>';
+                    tabelaHTML += '<td class="text-center">' + resultados[i].produto_nome + '</td>';
+                    tabelaHTML += '<td class="text-center">' + resultados[i].quantidade_vendida + '</td>';
+                    tabelaHTML += '<td class="text-center">' + resultados[i].valor * resultados[i].quantidade_vendida + '</td>';
+
+                    totalValor += parseFloat(resultados[i].valor * resultados[i].quantidade_vendida);
+
+                    tabelaHTML += '</tr>';
+                    i++;
+                }
+
+                tabelaHTML += '<tr><th class="text-center">Valor Total:</th><th></th><th></th><th>' + totalValor.toFixed(2) + '</th></tr>';
+                tabelaHTML += '<tr><th colspan = "4"></th></tr>';
+                tabelaHTML += '<tr><th colspan = "4" class="text-center">A empresa Lujinha de Luxo agradece a preferência!</th></tr>';
+                tabelaHTML += '</tbody></table>';
+                tabelaHTML += '</div>';
+            }
+
+            tabelaHTML += '</div>';
+            $('#resultadoTabela').html(tabelaHTML);
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <br>
+        <h4 class="center paragrafo_5">Emitir Ordem de Serviço: </h4>
+        <br>
+        <form class="form_admin center col-md-12" action="DB_os.php" method="POST">
+            <label for="nome_cli" class="label_admin">Nome Cliente:</label>
+            <input class="input_admin" type="text" id="nome_cli" name="nome_cli" autocomplete="off" required>
+
+            <label for="data" class="label_admin">Data da compra:</label>
+            <input class="input_admin" type="text" id="data" name="data" autocomplete="off" required>
+
+            <br>
+            <button id="enviarBtn" class="button_admin" type="button">Enviar</button>
+            <button id="downloadBtn" class="button_admin" type="button">Download O.S.</button>
+        </form>
+
+        <div id="resultadoTabela"></div>
+    </section>
+</body>
+</html>

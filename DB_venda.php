@@ -19,7 +19,7 @@ if (!$conn) {
 
 $hora_atual = date('H:i', strtotime('-0 hours'));
 
-$sql = "INSERT INTO venda (`cliente_nome`, `produto_nome`, `quantidade_vendida`, `dia`, `hora`) VALUES ('$nome_cli', '$nomeProduto', '$quantidade', CURRENT_DATE, '$hora_atual')";
+$sql = "INSERT INTO venda (`cliente_nome`, `produto_nome`, `quantidade_vendida`, `dia`, `hora`) VALUES ('$nome_cli', '$nomeProduto', '$quantidade', NOW(), '$hora_atual')";
 if (mysqli_query($conn, $sql)) {
       echo "
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ if (mysqli_query($conn, $sql)) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroVenda.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar mais vendas</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroVenda.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar mais vendas</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
@@ -113,7 +113,7 @@ if (mysqli_query($conn, $sql)) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroVenda.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar novamente</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroVenda.html' class='btn btn-accent btn-xlarge btn-rounded'>Cadastrar novamente</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>

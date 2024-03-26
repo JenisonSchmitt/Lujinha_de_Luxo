@@ -62,7 +62,7 @@ if (mysqli_query($conn, $sql)) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroQuantidade.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar mais produtos</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroQuantidade.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar mais produtos</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
@@ -114,7 +114,7 @@ if (mysqli_query($conn, $sql)) {
                         </div>
                         <br>
                         <div class='btn-wrap'>
-                              <a href='https://www.lujinhadeluxo.com.br/cadastroQuantidade.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar novamente</a>
+                              <a href='https://www.lujinhadeluxo.com.br/admin/cadastroQuantidade.html' class='btn btn-accent btn-xlarge btn-rounded'>Atualizar novamente</a>
                         </div>
                   </section>
                   <script src='js/jquery-1.11.0.min.js'></script>
