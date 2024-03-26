@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt">
+<head>
+	<title>LdL - Skincare</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="TemplatesJungle">
+	<meta name="keywords" content='Sua "Lujinha" virtual'>
+	<meta name="description" content='Sua "Lujinha" virtual'>
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../icomoon/icomoon.css">
+	<link rel="stylesheet" type="text/css" href="../css/vendor.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="shortcut icon" type="imagex/png" href="../images/icone.ico">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var entrega = "(Verificar opções de entrega)";
+            $('h6.entrega').text(entrega);
+    
+            var parcelamento = "(Parcelamento em até 3x sem juros)";
+            $('h6.parcelamento').text(parcelamento);
+    
+            var desconto = "Desconto de 5% com pagamento no Pix!";
+            $('h6.desconto').text(desconto);
+
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Fazer uma solicitação AJAX para buscar todos os hidratantes
+            $.ajax({
+                url: '../buscar_produtos_site.php',
+                dataType: 'json',
+                success: function (data) {
+                    // Iterar sobre os produtos e adicionar os dados aos elementos HTML correspondentes
+                    data.forEach(function (produto) {
+                        // Adicionar os dados ao elemento com base no nomehtml
+                        var elemento = $('#' + produto.nomehtml);
+                        elemento.find('h2').text(produto.nome);
+                        elemento.find('h5').text(produto.descricao);
+                        // Usar toFixed para formatar o valor com duas casas decimais
+                        var valorFormatado = parseFloat(produto.valor).toFixed(2);
+                        // Adicionar o valor formatado ao h4
+                        elemento.find('h4').text('R$ ' + valorFormatado);
+                        elemento.find('h3.marca').text('Marca: ' + produto.marca);
+                        elemento.find('h5.quantidade').text('Conteúdo: ' + produto.quantidade);
+                        if (produto.quantidade_restante >= 1) {
+                            elemento.find('h6.disponivel').text("Produto disponível para entrega imediata").css('color', 'black');
+                        } else {
+                            elemento.find('h6.disponivel').text("Produto esgotado no momento").css('color', 'red');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        function addToCart(productId) {
+            // Modificado para encontrar o input de quantidade corretamente
+            var quantityInput = $('#' + productId).find('.quantity-input');
+            var quantity = quantityInput.val();
+            var price = $('#' + productId).find('h4.preco').text().trim();
+            var productName = $('#' + productId).find('h2.titulo').text().trim();
+
+            var disponibilidade = $('#' + productId).find('h6.disponivel').text().trim();
+            if (disponibilidade === "Produto esgotado no momento") {
+                Swal.fire({
+                icon: 'error',
+                title: 'Produto esgotado!',
+                text: 'Este produto está esgotado no momento.',
+                showConfirmButton: false,
+                timer: 1000
+                });
+                return; // Sair da função se o produto estiver esgotado
+            }
+
+            console.log('Produto ID:', productName);  // Agora exibindo o "Produto ID" como o conteúdo do h3.titulo
+            console.log('Quantidade:', quantity);
+            console.log('Preço:', price);
+
+            var cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+            // Armazena o preço como um número
+            price = parseFloat(price.replace('R$ ', ''));
+
+            cart[productName] = {  // Usando o conteúdo do h3.titulo como "Produto ID"
+                label: productName,
+                quantity: quantity,
+                price: price
+            };
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Produto adicionado ao carrinho!',
+                showConfirmButton: false, // Não exibe o botão de confirmação
+                timer: 1000 // Tempo em milissegundos antes de fechar automaticamente (1,5 segundos neste caso)
+            });
+        }
+
+            $('.button_car').on('click', function () {
+                var productLabel = $(this).closest('.portfolio-item').find('.titulo').text();
+                var productId = $(this).closest('.portfolio-item').attr('id');
+
+                // Chame a função com os parâmetros necessários
+                addToCart(productLabel, productId);
+            });
+    </script>
+    <script>
+        function voltarPaginaAnterior() {
+            window.history.back();
+        }
+    </script>    
+</head>
+<body>
+	<div class="preloader"></div>
+	<header id="header" class="onepage-menu fixed">
+		<div id="header-wrap">
+			<nav id="navbar">
+				<div class="main-logo">
+					<a href="../produtosSK.html">LdL.</a>
+				</div>
+			</nav>
+		</div><!--header-wrap-->
+	</header>
+	<section id="intro" class="scrollspy-section">
+		<div class="main-slider">
+			<div class="slider-item jarallax-keep-img">
+				<img src="../images/foto15.png" alt="banner" class="jarallax-img">
+				<div class="banner-content">
+					<br>
+					<br>
+					<br>
+					<h3 class="banner-title txt-fx">Produtos de Skincare</h3>
+					<div class="btn-wrap">
+					</div>
+				</div><!--banner-content-->
+			</div><!--slider-item-->
+		</div><!--slider-->
+	</section>
+	<section class="scrollspy-section bg-personality_22 padding-large" id="Skincare">
+		<div class="container">
+			<br>		
+			<div class="grid p-0 clearfix row row-cols-2 row-cols-lg-3 row-cols-xl-2" data-aos="fade-up">
+				<div class="col mb-4 portfolio-item corpo center">
+					<img src="../images/toalha1.jpg" class="img-fluid" alt="corpo">
+				</div>
+				<div class="col mb-4 portfolio-item corpo" id="Higienizacao7">
+                    <h2 class="titulo"></h2><h3 class="marca"></h3><h5></h5><h5 class="quantidade"></h5><br><h6 class="disponivel"></h6><h6 class="entrega"></h6><br><h4 class="preco"></h4><h6 class="preco parcelamento"></h6><h6 class="desconto"></h6><br>                    <br><br>
+                    <input type="number" name="quantity" value="1" min="1" class="quantity-input" data-product="Higienizacao7">
+                    <button class="button_car" type="button" onclick="addToCart('Higienizacao7')"><iconify-icon icon="mdi-light:plus" width="20" height="20"></iconify-icon><iconify-icon icon="mdi-light:cart" width="30" height="30"></iconify-icon></button>
+                </div>
+			</div>
+            <br><hr>
+		</div>
+	</section>
+	<section id="contact" class="scrollspy-section bg-personality_23 padding-large espaco">
+        <div class="center">
+            <button id="voltarPagina" onclick="voltarPaginaAnterior()" class="center">Voltar para a seleção de produtos</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="left-content">
+                        <div class="section-header">
+                            <div class="title">
+                                <span>Onde nos encontrar</span>
+                            </div>
+                            <h2 class="section-title light">Onde estamos localizados</h2>
+                        </div>
+                        <p>Estamos buscando sempre expansão do nosso mapa, caso queira mais informações sobre envios, por favor, nos encaminhe uma mensagem!</p>
+                        <form id="form-contact_" class="form-light" action="../contato.php" method="POST">
+                            <p>
+                                <input type="text" name="name" placeholder="Seu primeiro nome" required>
+                            </p>
+                            <p>
+                                <input type="text" name="cpf" placeholder="Seu CPF" required>
+                            </p>
+                            <p>
+                                <textarea name="message" placeholder="Sua solicitação" required></textarea>
+                            </p>
+                            <p>
+                                <label for="agree">
+                                    <input id="agree" name="agree" type="checkbox" required>
+                                    <span>__Eu concordo com as políticas de privacidade</span>
+                                </label>
+                            </p>
+                            <button class="btn btn-accent btn-rounded btn-xlarge btn-full">Enviar</button>
+                        </form>
+                    </div>
+                </div><!--left-content-->
+                <div class="col-md-6">
+                    <div class="right-content">
+                        <div class="iconbox">
+                            <i class="icon icon-location"></i>
+                            <div class="detail">
+                                <strong>Endereço:</strong>
+                                <p>Centro, Tubarão/SC</p>
+                            </div>
+                        </div>
+                        <div class="iconbox">
+                            <i class="icon icon-phone"></i>
+                            <div class="detail">
+                                <strong>Telefone:</strong>
+                                <p>(48) 9 9138-3245</p>
+                            </div>
+                        </div>
+                        <div class="iconbox">
+                            <i class="icon icon-mail3"></i>
+                            <div class="detail">
+                                <strong>Email:</strong>
+                                <p><a href="#">lujinhadeluxo@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--right-content-->
+            </div>
+        </div>
+    </section>
+	<section id="testimonial" class="scrollspy-section bg-personality_24 padding-large">
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-menu menu-item-01">
+                        <img src="../images/logo_.png" alt="Lujinha" width="100" height="100" class="footer-logo">
+                        <p class="paragrafo_1">Buscaremos sempre lhe atender da melhor forma, buscando sempre uma performance que lhe agrade cada vez mais</p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-menu menu-item-02">
+                        <h5>Outros serviços</h5>
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <a href="index.html">Página Principal</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="sobrenos.html#sobrenos">Nossos Objetivos</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="sobrenos.html#diferencial">Nosso Diferencial</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="faleconosco.html">Fale Conosco</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="sobrenos.html#sobrenos">Sobre Nós</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="sobrenos.html#nossotime">Nosso Time</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-menu menu-item-03">
+                        <h5>Informações de Contato</h5>
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <p class="paragrafo">
+                                <i class="icon icon-location"></i>Centro, Tubarão/SC</p>
+                            </li>
+                            <li class="menu-item">
+                                <p class="paragrafo">
+                                <i class="icon icon-location2"></i>@lujinhadeluxo</p>
+                            </li>
+                            <li class="menu-item">
+                                <a href="https://api.whatsapp.com/send?phone=48991383245&amp;text=Olá, gostaria de mais informações sobre os produtos!" target="_blank" class="paragrafo">
+                                    <p>
+                                    <iconify-icon icon="akar-icons:whatsapp-fill">   </iconify-icon>     (48) 9 9138-3245</p>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <p class="paragrafo">
+                                <i class="icon icon-envelope-o"></i>lujinhadeluxo@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+<div id="testimonial_" class="scrollspy-section bg-personality_5 padding-large">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="copyright">
+                    <p>© 2022 Archi. All rights reserved.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="copyright text-right">
+                    <p>HTML Template by <a href="https://www.templatesjungle.com/"
+                            target="_blank">TemplatesJungle</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	<script src="../js/jquery-1.11.0.min.js"></script>
+	<script src="../js/ui-easing.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+	<script src="../js/plugins.js"></script>
+	<script src="../js/script.js"></script>
+</body>
+</html>
