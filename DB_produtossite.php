@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$database = "u228502032_Lujinha";
-$username = "u228502032__ldl";
-$password = "#ldlLujinha_2519";
+$servername = "**********";
+$username = "**********";
+$password = "**********";
+$dbname = "**********";
 
 $nomehtml = $_POST['nomehtml'];
 $nome = $_POST['nomeProduto'];
@@ -13,7 +13,7 @@ $quantidade = $_POST['quantidade'];
 $codigo = $_POST['codigo'];
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
