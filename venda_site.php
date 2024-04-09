@@ -11,13 +11,13 @@ if (isset($_POST['cart'])) {
         $email = $_SESSION['email'];
 
         // Conexão com o banco de dados
-        $servername = "localhost";
-        $database = "u228502032_Lujinha";
-        $username = "u228502032__ldl";
-        $password = "#ldlLujinha_2519";
+        $servername = "**********";
+        $username = "**********";
+        $password = "**********";
+        $dbname = "**********";
         
         // Cria a conexão
-        $conn = new mysqli($servername, $username, $password, $database);
+        $conn = new mysqli($servername, $username, $password, $dbname);
         
         // Verifica a conexão
         if ($conn->connect_error) {
