@@ -10,10 +10,10 @@ if (!isset($_SESSION['email'])) {
 
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $servername = "localhost";
-    $database = "u228502032_Lujinha";
-    $username = "u228502032__ldl";
-    $password = "#ldlLujinha_2519";
+    $servername = "**********";
+    $username = "**********";
+    $password = "**********";
+    $dbname = "**********";
     
     // Recupera o e-mail da sessão
     $email_logado = $_SESSION['email'];
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $endereco = $_POST['endereco'];
 
     // Cria a conexão
-    $conn = new mysqli($servername, $username, $password, $database);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verifica a conexão
     if ($conn->connect_error) {
