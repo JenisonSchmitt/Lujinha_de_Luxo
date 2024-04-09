@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
-$database = "u228502032_Lujinha";
-$username = "u228502032__ldl";
-$password = "#ldlLujinha_2519";
+$servername = "**********";
+$username = "**********";
+$password = "**********";
+$dbname = "**********";
+
 $cpf = $_POST['CPF'];
 $nome = $_POST['nome'];
 $telefone = $_POST['telefone'];
@@ -10,7 +11,7 @@ $email = $_POST['email'];
 $nascimento = $_POST['nascimento'];
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
