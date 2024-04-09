@@ -4,13 +4,13 @@ session_start();
 // Verifica se o formulário de login foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Configurações de conexão com o banco de dados
-    $servername = "localhost";
-    $database = "u228502032_Lujinha";
-    $username = "u228502032__ldl";
-    $password = "#ldlLujinha_2519";
+    $servername = "**********";
+    $username = "**********";
+    $password = "**********";
+    $dbname = "**********";
 
     // Conexão com o banco de dados
-    $conn = new mysqli($servername, $username, $password, $database);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verifica se a conexão foi estabelecida corretamente
     if ($conn->connect_error) {
