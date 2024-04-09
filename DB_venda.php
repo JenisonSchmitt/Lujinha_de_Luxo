@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
-$database = "u228502032_Lujinha";
-$username = "u228502032__ldl";
-$password = "#ldlLujinha_2519";
+$servername = "**********";
+$username = "**********";
+$password = "**********";
+$dbname = "**********";
+
 $nome_cli = $_POST['nome_cli'];
 $nomeProduto = $_POST['nomeProduto'];
 $quantidade = $_POST['quantidade'];
@@ -10,7 +11,7 @@ $quantidade = $_POST['quantidade'];
 date_default_timezone_set('America/Sao_Paulo'); // Substitua 'America/Sao_Paulo' pelo fuso horário correto
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
