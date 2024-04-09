@@ -1,8 +1,9 @@
 <?php
-$servername = "localhost";
-$database = "u228502032_Lujinha";
-$username = "u228502032__ldl";
-$password = "#ldlLujinha_2519";
+$servername = "**********";
+$username = "**********";
+$password = "**********";
+$dbname = "**********";
+
 $quantidadeExistente = intval($_POST['quantidadeExistente']);
 $nova_qtd = intval($_POST['nova_qtd']);
 $nomeProduto = $_POST['nomeProduto'];
@@ -10,7 +11,7 @@ $qtd_final = $quantidadeExistente + $nova_qtd;
 
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Check connection
 if (!$conn) {
